@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="papi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-01-25 12:43:06 PM"/>
+        <attribute name="created" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0xMzswNToxNDo0NiBQTTsyNzg4"/>
+        <attribute name="edited" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0yNTsxMjo0MzowNiBQTTs4NzsyOTU3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, g, x, y, xx, yy, z, i" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="S" type="Boolean" array="True" size="n+1"/>
+            <for variable="i" start="0" end="n" direction="inc" step="1">
+                <assign variable="S[i]" expression="False"/>
+            </for>
+            <assign variable="g" expression="Sqrt(n)"/>
+            <for variable="x" start="1" end="g" direction="inc" step="1"/>
+            <for variable="x" start="1" end="g" direction="inc" step="1">
+                <assign variable="xx" expression="x*x"/>
+                <for variable="y" start="1" end="g" direction="inc" step="1">
+                    <assign variable="yy" expression="y*y"/>
+                    <assign variable="z" expression="shl(xx,2)+yy"/>
+                    <if expression="(z&lt;=n)&amp;&amp;((z%12==1)||(z%12==5))">
+                        <then>
+                            <assign variable="S[z]" expression="!S[z]"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <assign variable="z" expression="z-xx"/>
+                    <if expression="(z&lt;=n)&amp;&amp;(z%12==7)">
+                        <then>
+                            <assign variable="S[z]" expression="!S[z]"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <if expression="x&gt;y">
+                        <then>
+                            <assign variable="z" expression="z - shl(yy, 1)"/>
+                            <if expression="(z&lt;=n)&amp;&amp;(z%12==11)">
+                                <then>
+                                    <assign variable="S[z]" expression="!S[z]"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </then>
+                        <else/>
+                    </if>
+                </for>
+            </for>
+            <for variable="i" start="5" end="g" direction="inc" step="1">
+                <if expression="S[i]">
+                    <then>
+                        <assign variable="xx" expression="i*i"/>
+                        <assign variable="z" expression="xx"/>
+                        <while expression="z&lt;=n">
+                            <assign variable="S[z]" expression="False"/>
+                            <assign variable="z" expression="z+xx"/>
+                        </while>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <for variable="i" start="1" end="n" direction="inc" step="1">
+                <if expression="S[i]==true">
+                    <then>
+                        <output expression="i" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="BinToDec" type="Integer" variable="sum">
+        <parameters>
+            <parameter name="number" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="rem, sum, power, num" type="Integer" array="False" size=""/>
+            <assign variable="num" expression="ToInteger(number)"/>
+            <assign variable="sum" expression="0"/>
+            <assign variable="power" expression="0"/>
+            <while expression="num &gt; 0">
+                <assign variable="rem" expression="num MOD 10"/>
+                <assign variable="num" expression="num / 10"/>
+                <assign variable="sum" expression="sum + rem * potenza(2, power)"/>
+                <assign variable="power" expression="power + 1"/>
+            </while>
+        </body>
+    </function>
+    <function name="DecToBin" type="String" variable="s">
+        <parameters>
+            <parameter name="num" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="rem" type="Integer" array="True" size="50"/>
+            <declare name="i, length" type="Integer" array="False" size=""/>
+            <declare name="s" type="String" array="False" size=""/>
+            <assign variable="i" expression="0"/>
+            <assign variable="length" expression="0"/>
+            <assign variable="s" expression="&quot;&quot;"/>
+            <call expression="InitializeInt(rem)"/>
+            <while expression="num &gt; 0">
+                <assign variable="rem[i]" expression="num MOD 2"/>
+                <assign variable="num" expression="num / 2"/>
+                <assign variable="i" expression="i+1"/>
+                <assign variable="length" expression="length + 1"/>
+            </while>
+            <for variable="i" start="length-1" end="0" direction="dec" step="1">
+                <assign variable="s" expression="s &amp; rem[i]"/>
+            </for>
+        </body>
+    </function>
+    <function name="InitializeInt" type="None" variable="">
+        <parameters>
+            <parameter name="vet" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i, length" type="Integer" array="False" size=""/>
+            <assign variable="length" expression="size(vet)"/>
+            <for variable="i" start="0" end="length-1" direction="inc" step="1">
+                <assign variable="vet[i]" expression="0"/>
+            </for>
+        </body>
+    </function>
+    <function name="potenza" type="Integer" variable="Result">
+        <parameters>
+            <parameter name="Base" type="Integer" array="False"/>
+            <parameter name="Esponente" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="Result" type="Integer" array="False" size=""/>
+            <if expression="Esponente == 0">
+                <then>
+                    <assign variable="Result" expression="1"/>
+                </then>
+                <else>
+                    <assign variable="Result" expression="Base * potenza(Base, Esponente - 1)"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="shl" type="Integer" variable="Result">
+        <parameters>
+            <parameter name="number" type="Integer" array="False"/>
+            <parameter name="move" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i, Result" type="Integer" array="False" size=""/>
+            <declare name="binaryNumber" type="String" array="False" size=""/>
+            <assign variable="binaryNumber" expression="DecToBin(number)"/>
+            <declare name="ResultStr" type="String" array="False" size=""/>
+            <assign variable="ResultStr" expression="&quot;&quot;"/>
+            <for variable="i" start="0" end="Len(binaryNumber)-1" direction="inc" step="1">
+                <assign variable="ResultStr" expression="ResultStr &amp; Char(binaryNumber, i)"/>
+            </for>
+            <for variable="i" start="0" end="move-1" direction="inc" step="1">
+                <assign variable="ResultStr" expression="ResultStr &amp; &quot;0&quot;"/>
+            </for>
+            <assign variable="Result" expression="BinToDec(ResultStr)"/>
+        </body>
+    </function>
+</flowgorithm>

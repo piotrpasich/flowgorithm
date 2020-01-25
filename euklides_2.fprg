@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="papi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-01-25 07:25:13 AM"/>
+        <attribute name="created" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0xMzswNDozODowOSBQTTsyNzky"/>
+        <attribute name="edited" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0yNTswNzoyNToxMyBBTTs2OzI4ODc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <declare name="t" type="Integer" array="False" size=""/>
+            <while expression="b!=0">
+                <assign variable="t" expression="b"/>
+                <assign variable="b" expression="a mod b"/>
+                <assign variable="a" expression="t"/>
+            </while>
+            <output expression="a" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

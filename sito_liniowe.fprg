@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="papi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-01-25 09:35:46 AM"/>
+        <attribute name="created" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0xMzswNToxMDoyNiBQTTsyNzgy"/>
+        <attribute name="edited" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0yNTswOTozNTo0NiBBTTsyNzsyOTQ3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="q" type="Integer" array="False" size=""/>
+            <declare name="x" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="S" type="Boolean" array="True" size="n+1"/>
+            <for variable="i" start="0" end="n" direction="inc" step="1">
+                <assign variable="S[i]" expression="True"/>
+            </for>
+            <declare name="p" type="Integer" array="False" size=""/>
+            <assign variable="p" expression="2"/>
+            <while expression="p*p&lt;=n">
+                <assign variable="q" expression="p"/>
+                <while expression="p*q&lt;=n">
+                    <assign variable="x" expression="p*q"/>
+                    <while expression="x&lt;=n">
+                        <assign variable="S[x]" expression="False"/>
+                        <assign variable="x" expression="p*x"/>
+                    </while>
+                    <assign variable="q" expression="q+1"/>
+                    <while expression="!S[q]">
+                        <assign variable="q" expression="q+1"/>
+                    </while>
+                </while>
+                <assign variable="p" expression="p+1"/>
+                <while expression="!S[p]">
+                    <assign variable="p" expression="p+1"/>
+                </while>
+            </while>
+            <for variable="i" start="2" end="n" direction="inc" step="1">
+                <if expression="S[i]">
+                    <then>
+                        <output expression="i" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

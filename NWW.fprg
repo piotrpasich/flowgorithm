@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="papi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-01-25 08:25:04 AM"/>
+        <attribute name="created" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0xMzswNDo0MDowOSBQTTsyNzg1"/>
+        <attribute name="edited" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0yNTswODoyNTowNCBBTTs0ODsyOTQy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <declare name="ab" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <if expression="a &gt; b">
+                <then/>
+                <else>
+                    <declare name="c" type="Integer" array="False" size=""/>
+                    <assign variable="c" expression="a"/>
+                    <assign variable="a" expression="b"/>
+                    <assign variable="b" expression="c"/>
+                </else>
+            </if>
+            <declare name="t" type="Integer" array="False" size=""/>
+            <assign variable="ab" expression="a*b"/>
+            <while expression="b!=0">
+                <assign variable="t" expression="b"/>
+                <assign variable="b" expression="a % b"/>
+                <assign variable="a" expression="t"/>
+            </while>
+            <declare name="NWD" type="Integer" array="False" size=""/>
+            <assign variable="NWD" expression="ab/a"/>
+            <declare name="NWW" type="Integer" array="False" size=""/>
+            <assign variable="NWW" expression="ab/NWD"/>
+            <output expression="NWW" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

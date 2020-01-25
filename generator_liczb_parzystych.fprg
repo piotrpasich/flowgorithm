@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="papi"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-01-25 07:33:04 AM"/>
+        <attribute name="created" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0xMzswNDoxMDozOSBQTTsyNzg1"/>
+        <attribute name="edited" value="cGFwaTtERVNLVE9QLU9QNlBNTzk7MjAyMC0wMS0yNTswNzozMzowNCBBTTsxNzsyOTM2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="MaxNumber" type="Integer" array="False" size=""/>
+            <input variable="MaxNumber"/>
+            <declare name="EvenNumbers" type="Integer" array="True" size="MaxNumber/2"/>
+            <declare name="iter" type="Integer" array="False" size=""/>
+            <assign variable="iter" expression="0"/>
+            <for variable="iter" start="0" end="MaxNumber" direction="inc" step="1">
+                <if expression="iter%2==0">
+                    <then>
+                        <output expression="iter" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
